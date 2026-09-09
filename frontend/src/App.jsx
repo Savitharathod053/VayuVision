@@ -2868,7 +2868,7 @@ export default function App() {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-white">XGBoost Model Trust</h2>
-                  <p className="text-sm text-slate-400">Statistical evaluation on 18,000+ holdout test samples</p>
+                  <p className="text-sm text-slate-400">Statistical evaluation on 128,767 holdout test samples — V3 Extended model (trained on full Feb 2025–Sep 2026 dataset)</p>
                 </div>
               </div>
 
@@ -2909,7 +2909,7 @@ export default function App() {
                       <span className="px-2 py-1 bg-purple-500/20 text-purple-300 text-xs rounded border border-purple-500/30">{modelTrustData.station}</span>
                     </div>
                     <p className="text-[11px] text-slate-400 mb-4 leading-relaxed">
-                      Per-station accuracy is naturally lower than the overall pooled R² (0.574) shown above. The model was trained jointly across all 50 stations, so it captures shared patterns (daily cycles, regional weather effects) that boost aggregate accuracy — but any single station's own time series is noisier in isolation. This is expected model behavior, not reduced accuracy.
+                      Per-station accuracy is naturally lower than the overall pooled R² (0.763) shown above. The V3 model was trained jointly across all 58 government-network stations on 18 months of data including full winter seasons, so it captures shared seasonal patterns (stubble-burning peaks, inversion events, monsoon washout cycles) that boost aggregate accuracy — but any single station's own time series is noisier in isolation. This is expected model behavior, not reduced accuracy. Note: the model beats persistence in the 100–200 and 200–300 µg/m³ ranges but remains near-parity with persistence at 300+ (rare extreme events with limited training samples).
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                       <div>
