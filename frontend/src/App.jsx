@@ -1201,6 +1201,24 @@ export default function App() {
     }
   };
 
+  const [aerosolData, setAerosolData] = useState(null);
+  const [loadingAerosol, setLoadingAerosol] = useState(false);
+
+  const fetchAerosol = async () => {
+    try {
+      setLoadingAerosol(true);
+      const res = await fetch(`${API_BASE}/aerosol`);
+      if (res.ok) {
+        const json = await res.json();
+        setAerosolData(json);
+      }
+    } catch (e) {
+      console.error('Failed to load NASA AOD aerosol:', e);
+    } finally {
+      setLoadingAerosol(false);
+    }
+  };
+
   const fetchFires = async () => {
     try {
       const res = await fetch(`${API_BASE}/fires`);
@@ -1231,11 +1249,15 @@ export default function App() {
     fetchAlerts();
     fetchMovementForecast();
     fetchFires();
+    fetchAerosol();
   }, []);
 
-  // Auto-poll data-status every 60 seconds so the banner stays fresh
+  // Auto-poll data-status and aerosol every 60 seconds so the banner stays fresh
   useEffect(() => {
-    const interval = setInterval(fetchDataStatus, 60000);
+    const interval = setInterval(() => {
+      fetchDataStatus();
+      fetchAerosol();
+    }, 60000);
     return () => clearInterval(interval);
   }, []);
 
@@ -1898,7 +1920,7 @@ export default function App() {
               </section>
 
               {/* SECTION 2: Compact Stat Cards Row */}
-              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 {/* Card 1: PM2.5 */}
                 <div className="bg-[#0F172A] border border-slate-800 rounded-2xl p-4 shadow-lg hover:border-slate-700 transition-all">
                   <div className="flex items-center justify-between text-slate-400 text-xs mb-1 font-semibold">
@@ -1973,6 +1995,51 @@ export default function App() {
                   <div className="text-[11px] text-emerald-400 font-semibold mt-1.5 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                     <span>Active Dispersion Ventilation</span>
+                  </div>
+                </div>
+
+                {/* Card 5: Regional Satellite Aerosol (NASA LANCE AOD) */}
+                <div className="bg-[#0F172A] border border-slate-800 rounded-2xl p-4 shadow-lg hover:border-slate-700 transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between text-slate-400 text-xs mb-1 font-semibold">
+                      <span className="truncate pr-1">Regional Satellite Aerosol</span>
+                      <span className="p-1.5 rounded-lg bg-indigo-950/60 text-indigo-400 border border-indigo-500/20 shrink-0">
+                        <Sparkles className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                    {aerosolData?.has_valid_pass && aerosolData?.delhi_aod !== null ? (
+                      <>
+                        <div className="flex items-baseline gap-2 mt-2">
+                          <span className="text-2xl font-extrabold text-white">
+                            {Number(aerosolData.delhi_aod).toFixed(2)}
+                          </span>
+                          <span className="text-xs text-slate-400">AOD (550nm)</span>
+                        </div>
+                        <div className="mt-1.5 flex items-center gap-1.5">
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                            aerosolData.delhi_aod >= 1.0 
+                              ? 'bg-rose-950/80 text-rose-300 border-rose-500/30' 
+                              : aerosolData.delhi_aod >= 0.5 
+                              ? 'bg-amber-950/80 text-amber-300 border-amber-500/30' 
+                              : 'bg-emerald-950/80 text-emerald-300 border-emerald-500/30'
+                          }`}>
+                            {aerosolData.delhi_aod >= 1.0 ? 'Significant (>1.0)' : aerosolData.delhi_aod >= 0.5 ? 'Elevated (>0.5)' : 'Moderate (<0.5)'}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-baseline gap-2 mt-2">
+                          <span className="text-xl font-bold text-slate-400">No Pass</span>
+                        </div>
+                        <div className="text-[11px] text-amber-400/90 font-medium mt-1">
+                          No valid satellite pass right now (nighttime)
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="text-[10px] text-slate-400 mt-2 pt-2 border-t border-slate-800/80 truncate" title={aerosolData?.sensor_label || 'NASA LANCE (AERDA L3)'}>
+                    {aerosolData?.sensor_label || 'NASA LANCE (AERDA L3)'} • <span className="text-slate-400">Research guideline</span>
                   </div>
                 </div>
               </section>

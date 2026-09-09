@@ -163,7 +163,9 @@ def get_confidence_bounds(predicted_pm25: float) -> tuple[Optional[float], Optio
 # Background Tasks — Safe Periodic Data Refresh (20-minute interval)
 # -----------------------------------------------------------------------------
 FIRMS_CSV_PATH = BASE_DIR / "data" / "raw" / "firms_processed.csv"
-REFRESH_INTERVAL_SECONDS = 20 * 60  # 20 minutes
+AEROSOL_CSV_PATH = BASE_DIR / "data" / "raw" / "aerosol_nrt.csv"
+REFRESH_INTERVAL_SECONDS = 20 * 60  # 20 minutes (OpenAQ, FIRMS, Weather)
+AEROSOL_REFRESH_INTERVAL_SECONDS = 60 * 60  # 60 minutes (1 hour) for NASA LANCE Aerosol
 
 # Global refresh state — read by /data-status endpoint
 refresh_state = {
@@ -185,6 +187,12 @@ refresh_state = {
         "status": "PENDING",
         "last_error": None,
     },
+    "aerosol": {
+        "last_refresh": None,
+        "rows": None,
+        "status": "PENDING",
+        "last_error": None,
+    },
 }
 
 
@@ -200,7 +208,8 @@ def _count_csv_rows(path: Path) -> int:
 
 
 async def periodic_refresh():
-    """Background coroutine: refreshes OpenAQ, FIRMS, and Open-Meteo weather data every 20 minutes.
+    """Background coroutine: refreshes OpenAQ, FIRMS, and Open-Meteo weather data every 20 minutes,
+    and NASA LANCE AOD aerosol granules every 60 minutes (1 hour).
     
     Safety guarantees:
       - OpenAQ: fetch_openaq.py aborts (exit 1) if fewer than 10 valid rows,
@@ -209,10 +218,13 @@ async def periodic_refresh():
         Zero fires is a legitimate outcome and is NOT treated as a failure.
       - Weather: fetch_openmeteo_forecast.py aborts (exit 1) if fewer than 24 rows
         or invalid schema, preserving existing data.
+      - Aerosol: fetch_aerosol_nrt.py checks NASA CMR once per hour, only appends
+        if at least 1 non-masked grid cell is found, never overwriting existing history.
       - All exceptions are caught — a failed refresh never crashes the API.
     """
     # Initial delay: let the API finish starting up before first refresh
     await asyncio.sleep(10)
+    last_aerosol_check_ts = 0.0
 
     while True:
         now_ts = datetime.now().isoformat(timespec="seconds")
@@ -333,7 +345,46 @@ async def periodic_refresh():
             refresh_state["weather"]["last_error"] = str(e)
             print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] Weather — EXCEPTION: {e}")
 
-        print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] Cycle complete. Next refresh in {REFRESH_INTERVAL_SECONDS // 60} minutes.")
+        # --- NASA LANCE AOD Aerosol Refresh (Hourly Cadence) ---
+        import time
+        now_epoch = time.time()
+        if now_epoch - last_aerosol_check_ts >= AEROSOL_REFRESH_INTERVAL_SECONDS or last_aerosol_check_ts == 0.0:
+            rows_before_aero = _count_csv_rows(AEROSOL_CSV_PATH)
+            print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] NASA AOD Aerosol — checking (records before: {rows_before_aero})...")
+            try:
+                aero_res = await asyncio.to_thread(
+                    subprocess.run,
+                    [sys.executable, str(BASE_DIR / "scripts" / "fetch_aerosol_nrt.py")],
+                    capture_output=True,
+                    text=True,
+                    cwd=str(BASE_DIR),
+                    timeout=120
+                )
+                rows_after_aero = _count_csv_rows(AEROSOL_CSV_PATH)
+                last_aerosol_check_ts = now_epoch
+                if aero_res.returncode == 0:
+                    refresh_state["aerosol"]["last_refresh"] = datetime.now().isoformat(timespec="seconds")
+                    refresh_state["aerosol"]["rows"] = rows_after_aero
+                    refresh_state["aerosol"]["status"] = "SUCCESS"
+                    refresh_state["aerosol"]["last_error"] = None
+                    print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] NASA AOD Aerosol — SUCCESS — {rows_after_aero} total records")
+                else:
+                    refresh_state["aerosol"]["status"] = "FAILED"
+                    refresh_state["aerosol"]["last_error"] = f"Exit code {aero_res.returncode}"
+                    refresh_state["aerosol"]["rows"] = rows_after_aero
+                    print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] NASA AOD Aerosol — FAILED (exit {aero_res.returncode})")
+                    if aero_res.stderr.strip():
+                        print(f"  stderr: {aero_res.stderr.strip()[-500:]}")
+            except subprocess.TimeoutExpired:
+                refresh_state["aerosol"]["status"] = "FAILED"
+                refresh_state["aerosol"]["last_error"] = "Timeout (120s)"
+                print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] NASA AOD Aerosol — FAILED (timeout 120s)")
+            except Exception as e:
+                refresh_state["aerosol"]["status"] = "FAILED"
+                refresh_state["aerosol"]["last_error"] = str(e)
+                print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] NASA AOD Aerosol — EXCEPTION: {e}")
+
+        print(f"[{datetime.now().isoformat(timespec='seconds')}] [Refresh] Cycle complete. Next 20m refresh in {REFRESH_INTERVAL_SECONDS // 60} minutes (Aerosol hourly).")
         print(f"{'='*72}\n")
 
         await asyncio.sleep(REFRESH_INTERVAL_SECONDS)
@@ -342,7 +393,12 @@ async def periodic_refresh():
 @app.on_event("startup")
 async def startup_event():
     # Seed refresh_state with current file info so /data-status works immediately
-    for label, path in [("openaq", RAW_CSV_PATH), ("firms", FIRMS_CSV_PATH), ("weather", FORECAST_WEATHER_CSV_PATH)]:
+    for label, path in [
+        ("openaq", RAW_CSV_PATH),
+        ("firms", FIRMS_CSV_PATH),
+        ("weather", FORECAST_WEATHER_CSV_PATH),
+        ("aerosol", AEROSOL_CSV_PATH)
+    ]:
         if path.exists():
             refresh_state[label]["rows"] = _count_csv_rows(path)
             refresh_state[label]["last_refresh"] = datetime.fromtimestamp(
@@ -350,8 +406,8 @@ async def startup_event():
             ).isoformat(timespec="seconds")
             refresh_state[label]["status"] = "SUCCESS"
     asyncio.create_task(periodic_refresh())
-    print(f"[Backend] Background periodic refresh task scheduled ({REFRESH_INTERVAL_SECONDS // 60}m interval).")
-    print(f"[Backend] Initial data: OpenAQ={refresh_state['openaq']['rows']} rows, FIRMS={refresh_state['firms']['rows']} rows, Weather={refresh_state['weather']['rows']} rows")
+    print(f"[Backend] Background periodic refresh task scheduled (20m general, 60m aerosol).")
+    print(f"[Backend] Initial data: OpenAQ={refresh_state['openaq']['rows']} rows, FIRMS={refresh_state['firms']['rows']} rows, Weather={refresh_state['weather']['rows']} rows, Aerosol={refresh_state['aerosol']['rows']} rows")
 
 
 
@@ -1022,7 +1078,156 @@ def get_data_status():
         "weather_last_refresh": refresh_state["weather"]["last_refresh"],
         "weather_rows": refresh_state["weather"]["rows"],
         "weather_status": refresh_state["weather"]["status"],
+        "aerosol_last_refresh": refresh_state["aerosol"]["last_refresh"],
+        "aerosol_rows": refresh_state["aerosol"]["rows"],
+        "aerosol_status": refresh_state["aerosol"]["status"],
     }
+
+
+@app.get("/aerosol", summary="Get Latest NASA LANCE Near-Real-Time Aerosol Optical Depth (AOD)")
+def get_latest_aerosol():
+    """
+    Returns the latest satellite-derived Aerosol Optical Depth (AOD) for Delhi NCR (28.5°N, 77.5°E)
+    and surrounding 3x3 regional grid from NASA LANCE AERDA L3.
+    """
+    note = (
+        "Satellite-derived Aerosol Optical Depth (AOD) — a research-grade indicator of atmospheric haze, "
+        "updated as new satellite passes become available (typically every few hours during daylight, "
+        "not continuous — nighttime has no valid readings since this relies on sunlight)."
+    )
+    guideline = "Approximate general research guideline (AOD > 0.5: elevated, > 1.0: significant), not an official threshold."
+    
+    if not AEROSOL_CSV_PATH.exists() or AEROSOL_CSV_PATH.stat().st_size == 0:
+        return {
+            "status": "NO_DATA",
+            "has_valid_pass": False,
+            "timestamp": None,
+            "granule_id": None,
+            "granule_time_start": None,
+            "granule_time_end": None,
+            "primary_sensor": None,
+            "sensor_label": "No Satellite Pass Available",
+            "is_fallback": False,
+            "delhi_aod": None,
+            "interpretation": "No valid satellite pass in current window (nighttime / awaiting next daylight overpass)",
+            "guideline_note": guideline,
+            "grid_3x3": [],
+            "valid_cells_count": 0,
+            "history_records": 0,
+            "note": note
+        }
+        
+    try:
+        df = pd.read_csv(AEROSOL_CSV_PATH)
+        if df.empty:
+            return {
+                "status": "NO_DATA",
+                "has_valid_pass": False,
+                "timestamp": None,
+                "granule_id": None,
+                "granule_time_start": None,
+                "granule_time_end": None,
+                "primary_sensor": None,
+                "sensor_label": "No Satellite Pass Available",
+                "is_fallback": False,
+                "delhi_aod": None,
+                "interpretation": "No valid satellite pass in current window (nighttime / awaiting next daylight overpass)",
+                "guideline_note": guideline,
+                "grid_3x3": [],
+                "valid_cells_count": 0,
+                "history_records": 0,
+                "note": note
+            }
+            
+        last_row = df.iloc[-1]
+        
+        # Parse delhi_aod
+        delhi_aod_val = None
+        if pd.notna(last_row.get("delhi_aod")) and str(last_row.get("delhi_aod")).strip() != "":
+            try:
+                delhi_aod_val = round(float(last_row["delhi_aod"]), 4)
+            except Exception:
+                pass
+                
+        # Sensor friendly name
+        raw_sensor = str(last_row.get("primary_sensor", ""))
+        if "Terra_MODIS" in raw_sensor:
+            sensor_label = "Terra MODIS (Combined DT/DB 550nm QF3)"
+        elif "Aqua_MODIS" in raw_sensor:
+            sensor_label = "Aqua MODIS (Combined DT/DB 550nm QF3)"
+        elif "SNPP_VIIRS" in raw_sensor:
+            sensor_label = "SNPP VIIRS (Deep Blue 550nm)"
+        elif "NOAA20_VIIRS" in raw_sensor:
+            sensor_label = "NOAA-20 VIIRS (Deep Blue 550nm)"
+        else:
+            sensor_label = raw_sensor or "NASA LANCE Multi-Satellite NRT"
+            
+        # Interpretation
+        if delhi_aod_val is not None:
+            if delhi_aod_val < 0.3:
+                interp = f"Low atmospheric haze (AOD {delhi_aod_val:.2f})"
+            elif delhi_aod_val < 0.5:
+                interp = f"Moderate aerosol loading (AOD {delhi_aod_val:.2f})"
+            elif delhi_aod_val < 1.0:
+                interp = f"Elevated aerosol loading (AOD {delhi_aod_val:.2f} - typical urban haze)"
+            else:
+                interp = f"Significant atmospheric aerosol burden (AOD {delhi_aod_val:.2f} - dense haze/smoke)"
+        else:
+            interp = "No valid satellite pass in current window (nighttime / awaiting next daylight overpass)"
+            
+        # 3x3 Grid
+        grid_labels = [
+            (29.5, 76.5, "aod_29_5_76_5", "NW (Haryana/Punjab)"),
+            (29.5, 77.5, "aod_29_5_77_5", "N (Upper UP)"),
+            (29.5, 78.5, "aod_29_5_78_5", "NE (Western UP)"),
+            (28.5, 76.5, "aod_28_5_76_5", "W (Gurugram/Rewari)"),
+            (28.5, 77.5, "aod_28_5_77_5", "Center (Delhi NCR)"),
+            (28.5, 78.5, "aod_28_5_78_5", "E (Ghaziabad/East UP)"),
+            (27.5, 76.5, "aod_27_5_76_5", "SW (Rajasthan Border)"),
+            (27.5, 77.5, "aod_27_5_77_5", "S (South NCR/Palwal)"),
+            (27.5, 78.5, "aod_27_5_78_5", "SE (Aligarh/UP)")
+        ]
+        
+        grid_list = []
+        for lat, lon, col, label in grid_labels:
+            v = last_row.get(col)
+            val = None
+            if pd.notna(v) and str(v).strip() != "":
+                try:
+                    val = round(float(v), 4)
+                except Exception:
+                    pass
+            grid_list.append({
+                "latitude": lat,
+                "longitude": lon,
+                "region_label": label,
+                "aod": val
+            })
+            
+        is_fallback_val = str(last_row.get("is_fallback", "False")).lower() in ["true", "1"]
+        valid_count = int(last_row.get("valid_cells_count", 0)) if pd.notna(last_row.get("valid_cells_count")) else 0
+        has_valid_pass = valid_count > 0 and (delhi_aod_val is not None or any(g["aod"] is not None for g in grid_list))
+        
+        return {
+            "status": "SUCCESS" if has_valid_pass else "NO_PASS",
+            "has_valid_pass": has_valid_pass,
+            "timestamp": str(last_row.get("fetch_timestamp", "")),
+            "granule_id": str(last_row.get("granule_id", "")),
+            "granule_time_start": str(last_row.get("granule_time_start", "")),
+            "granule_time_end": str(last_row.get("granule_time_end", "")),
+            "primary_sensor": raw_sensor,
+            "sensor_label": sensor_label,
+            "is_fallback": is_fallback_val,
+            "delhi_aod": delhi_aod_val,
+            "interpretation": interp,
+            "guideline_note": guideline,
+            "grid_3x3": grid_list,
+            "valid_cells_count": valid_count,
+            "history_records": len(df),
+            "note": note
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error reading aerosol data: {str(e)}")
 
 
 @app.get("/stations", response_model=List[StationSummary], summary="List All Monitoring Stations")
