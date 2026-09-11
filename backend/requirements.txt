@@ -6,3 +6,4 @@ joblib
 xgboost
 shap
 gunicorn
+requests
