@@ -1,9 +1,11 @@
 fastapi
 uvicorn
 pandas
+numpy
 pydantic
 joblib
 xgboost
 shap
 gunicorn
 requests
+python-dotenv

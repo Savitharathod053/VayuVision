@@ -2704,9 +2704,6 @@ def predict_pm25(payload: PredictRequest):
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
 
 
 class PollutionSourceItem(BaseModel):
@@ -2862,4 +2859,29 @@ def get_nearby_sources(station_name: str):
             sources=[], 
             message="Could not fetch nearby sources at this time."
         )
+
+
+# -----------------------------------------------------------------------------
+# Frontend Static Files & SPA Routing (Production Deployment)
+# -----------------------------------------------------------------------------
+FRONTEND_DIST = BASE_DIR / "frontend" / "dist"
+if FRONTEND_DIST.exists():
+    from fastapi.staticfiles import StaticFiles
+    from starlette.responses import FileResponse
+
+    if (FRONTEND_DIST / "assets").exists():
+        app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIST / "assets")), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        candidate = FRONTEND_DIST / full_path
+        if full_path and candidate.exists() and candidate.is_file():
+            return FileResponse(str(candidate))
+        return FileResponse(str(FRONTEND_DIST / "index.html"))
+
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=port, reload=False)
 

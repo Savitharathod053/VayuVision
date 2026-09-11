@@ -1,0 +1,2 @@
+fetch_timestamp,granule_id,granule_time_start,granule_time_end,primary_sensor,is_fallback,delhi_aod,aod_29_5_76_5,aod_29_5_77_5,aod_29_5_78_5,aod_28_5_76_5,aod_28_5_77_5,aod_28_5_78_5,aod_27_5_76_5,aod_27_5_77_5,aod_27_5_78_5,valid_cells_count,status_note
+2026-09-09T05:55:54+00:00,AERDA_L3_VIIRS_MODIS.A2026252.0300.001.nrt.nc,2026-09-09T01:30Z,2026-09-09T04:30Z,Terra_MODIS_NASADarkTargetDeepBlue_AOD_550_QF3,False,0.7999,0.6481,1.111,1.0777,0.524,0.7999,0.9868,0.4941,0.7064,0.7715,9,Valid pass (9/9 grid cells non-masked)

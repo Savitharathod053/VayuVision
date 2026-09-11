@@ -1,0 +1,322 @@
+location,city,parameter,value,unit,timestamp
+"R K Puram, Delhi - DPCC",Delhi,no,37.1,ppb,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,o3,5.1,µg/m³,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,pm25,81.0,µg/m³,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,no2,51.6,ppb,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,pm10,184.0,µg/m³,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,co,2.2,ppb,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,temperature,30.5,c,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,relativehumidity,81.0,%,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,so2,14.7,ppb,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,wind_direction,143.0,deg,2026-09-08T14:30:00Z
+"R K Puram, Delhi - DPCC",Delhi,nox,0.0576,ppb,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,no,3.1,ppb,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,so2,23.5,ppb,2026-09-08T14:15:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,pm25,46.0,µg/m³,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,o3,18.4,µg/m³,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,relativehumidity,68.0,%,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,no2,43.2,ppb,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,co,1.48,ppb,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,pm10,207.0,µg/m³,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,temperature,33.4,c,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,wind_direction,222.0,deg,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,nox,0.0255,ppb,2026-09-08T14:30:00Z
+"Punjabi Bagh, Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,o3,11.0,µg/m³,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,no,54.2,ppb,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,temperature,32.4,c,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,relativehumidity,68.0,%,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,co,1.61,ppb,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,so2,21.0,ppb,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,no2,51.8,ppb,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,pm10,131.0,µg/m³,2026-09-08T14:00:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,pm25,39.0,µg/m³,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,nox,0.0716,ppb,2026-09-08T14:30:00Z
+"Anand Vihar, New Delhi - DPCC",Delhi,wind_direction,111.0,deg,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,co,1.75,ppb,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,so2,13.13,ppb,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,no2,3.76,ppb,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,pm25,64.5,µg/m³,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,no,2.4,ppb,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,wind_direction,281.14,deg,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,o3,6.98,µg/m³,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,nox,0.019039999999999998,ppb,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,pm10,82.7,µg/m³,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,wind_speed,1.0,m/s,2026-09-08T14:30:00Z
+"Vikas Sadan, Gurugram - HSPCB",Gurugram,relativehumidity,3.58,%,2026-09-05T03:00:00Z
+"Pusa, Delhi - IMD",Delhi,co,0.95,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,pm10,118.7,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,pm25,49.5,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,no2,70.2,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,no,9.93,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,o3,48.47,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - IMD",Delhi,nox,0.02643,ppb,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,pm10,177.03,µg/m³,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,no,15.36,ppb,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,no2,69.6,ppb,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,pm25,51.45,µg/m³,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,co,0.95,ppb,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,o3,27.77,µg/m³,2026-09-08T14:30:00Z
+"Burari Crossing, New Delhi - IMD",Delhi,nox,0.02985,ppb,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,pm10,73.59,µg/m³,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,pm25,32.2,µg/m³,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,no,34.56,ppb,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,no2,18.44,ppb,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,o3,13.75,µg/m³,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,co,0.48,ppb,2026-09-08T14:30:00Z
+"Aya Nagar, New Delhi - IMD",Delhi,nox,0.03791,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,pm10,207.22,µg/m³,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,no2,35.25,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,o3,17.63,µg/m³,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,temperature,29.64,c,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,pm25,39.26,µg/m³,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,co,0.85,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,so2,29.87,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,no,27.35,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,relativehumidity,81.1,%,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,wind_speed,0.08,m/s,2026-09-08T14:00:00Z
+"Sirifort, Delhi - CPCB",Delhi,nox,0.057479999999999996,ppb,2026-09-08T14:30:00Z
+"Sirifort, Delhi - CPCB",Delhi,wind_direction,84.7,deg,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,pm10,200.0,µg/m³,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,no2,13.5,ppb,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,relativehumidity,60.0,%,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,no,3.2,ppb,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,co,0.79,ppb,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,temperature,32.0,c,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,so2,7.6,ppb,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,pm25,44.0,µg/m³,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,o3,14.0,µg/m³,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,nox,0.009699999999999999,ppb,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,wind_direction,113.0,deg,2026-09-08T14:30:00Z
+"Sector - 125, Noida, UP - UPPCB",Noida,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,no2,140.36,ppb,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,no,8.94,ppb,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,pm10,163.8,µg/m³,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,co,1.95,ppb,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,o3,30.3,µg/m³,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,pm25,44.0,µg/m³,2026-09-08T14:30:00Z
+"North Campus, DU, Delhi - IMD",Delhi,nox,0.04562,ppb,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,pm25,28.0,µg/m³,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,co,1.19,ppb,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,o3,25.8,µg/m³,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,no,11.5,ppb,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,pm10,150.0,µg/m³,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,no2,13.8,ppb,2026-09-08T14:30:00Z
+"ITO, New Delhi - CPCB",Delhi,so2,4.5,ppb,2026-09-08T12:45:00Z
+"ITO, New Delhi - CPCB",Delhi,nox,0.0167,ppb,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,pm10,224.5,µg/m³,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,o3,18.99,µg/m³,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,no2,11.7,ppb,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,co,0.88,ppb,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,no,15.89,ppb,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,pm25,53.0,µg/m³,2026-09-08T14:30:00Z
+"Sector - 62, Noida, UP - IMD",Noida,nox,0.01914,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,relativehumidity,69.1,%,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,o3,16.34,µg/m³,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,no,8.36,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,pm10,150.3,µg/m³,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,no2,38.34,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,pm25,22.1,µg/m³,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,so2,11.54,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,co,0.71,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,wind_speed,0.15,m/s,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,nox,0.027190000000000002,ppb,2026-09-08T14:30:00Z
+"NSIT Dwarka, Delhi - CPCB",Delhi,wind_direction,16.05,deg,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,relativehumidity,87.32,%,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,no,15.07,ppb,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,so2,26.05,ppb,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,pm25,38.0,µg/m³,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,co,0.18,ppb,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,pm10,158.05,µg/m³,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,no2,20.16,ppb,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,o3,15.68,µg/m³,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,nox,0.03519,ppb,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,wind_direction,123.41,deg,2026-09-08T14:30:00Z
+"DTU, New Delhi - CPCB",Delhi,wind_speed,0.18,m/s,2026-09-08T12:45:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,no2,15.63,ppb,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,pm10,203.25,µg/m³,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,pm25,57.24,µg/m³,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,no,43.39,ppb,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,o3,15.59,µg/m³,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,co,3.33,ppb,2026-09-08T14:30:00Z
+"CRRI Mathura Road, New Delhi - IMD",Delhi,nox,0.04362,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,o3,10.48,µg/m³,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,no2,50.71,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,co,1.67,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,so2,18.3,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,relativehumidity,92.06,%,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,pm25,40.8,µg/m³,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,pm10,162.2,µg/m³,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,no,10.78,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,wind_direction,101.71,deg,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,nox,0.03569,ppb,2026-09-08T14:30:00Z
+"Shadipur, Delhi - CPCB",Delhi,wind_speed,0.34,m/s,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,pm10,106.9,µg/m³,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,no2,25.84,ppb,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,o3,2.7,µg/m³,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,co,0.66,ppb,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,pm25,38.6,µg/m³,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,no,8.03,ppb,2026-09-08T14:30:00Z
+"Lodhi Road, New Delhi - IMD",Delhi,nox,0.02028,ppb,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,co,1.0,ppb,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,no,18.83,ppb,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,pm10,160.62,µg/m³,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,pm25,36.52,µg/m³,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,o3,25.56,µg/m³,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,no2,119.91,ppb,2026-09-08T14:30:00Z
+"IGI Airport (T3), Delhi - IMD",Delhi,nox,0.046380000000000005,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,pm25,38.0,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,co,0.98,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,relativehumidity,84.0,%,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,no,6.6,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,pm10,226.0,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,so2,6.8,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,temperature,32.8,c,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,no2,49.0,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,o3,24.1,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,nox,0.0314,ppb,2026-09-08T14:30:00Z
+"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,wind_direction,88.0,deg,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,co,3.33,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,pm10,364.0,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,no2,51.1,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,so2,22.1,ppb,2026-09-08T14:15:00Z
+"Pusa, Delhi - DPCC",Delhi,pm25,57.0,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,relativehumidity,85.0,%,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,temperature,33.1,c,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,o3,10.6,µg/m³,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,no,41.5,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,nox,0.060399999999999995,ppb,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,wind_direction,193.0,deg,2026-09-08T14:30:00Z
+"Pusa, Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,no,1.0,ppb,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,pm10,123.0,µg/m³,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,relativehumidity,86.0,%,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,o3,3.7,µg/m³,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,so2,3.4,ppb,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,pm25,19.0,µg/m³,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,no2,21.8,ppb,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,temperature,32.2,c,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,co,1.48,ppb,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,wind_direction,229.0,deg,2026-09-08T14:30:00Z
+"Mandir Marg, New Delhi - DPCC",Delhi,nox,0.0125,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,o3,8.38,µg/m³,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,co,3.83,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,no2,38.69,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,relativehumidity,74.37,%,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,no,12.4,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,pm25,53.1,µg/m³,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,pm10,103.4,µg/m³,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,so2,8.59,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,nox,0.03066,ppb,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,wind_speed,0.76,m/s,2026-09-08T14:30:00Z
+"IHBAS, Dilshad Garden,New Delhi - CPCB",Delhi,wind_direction,353.23,deg,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,pm25,49.0,µg/m³,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,relativehumidity,73.0,%,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,no,2.8,ppb,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,no2,42.6,ppb,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,temperature,27.6,c,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,pm10,88.0,µg/m³,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,so2,9.4,ppb,2026-09-08T06:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,o3,21.66,µg/m³,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,co,0.33,ppb,2026-09-08T06:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,wind_direction,67.0,deg,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,nox,0.0249,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,pm25,20.0,µg/m³,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,no,4.2,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,relativehumidity,68.0,%,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,co,1.65,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,temperature,30.8,c,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,so2,2.2,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,o3,5.5,µg/m³,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,pm10,149.0,µg/m³,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,no2,69.4,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,nox,0.040299999999999996,ppb,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,wind_direction,203.0,deg,2026-09-08T14:30:00Z
+"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,wind_speed,0.6,m/s,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,so2,14.8,ppb,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,co,0.69,ppb,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,no2,49.2,ppb,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,temperature,31.8,c,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,relativehumidity,74.0,%,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,no,20.6,ppb,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,pm10,233.0,µg/m³,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,o3,11.3,µg/m³,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,pm25,34.0,µg/m³,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,nox,0.0431,ppb,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,wind_direction,226.0,deg,2026-09-08T14:30:00Z
+"Dwarka-Sector 8, Delhi - DPCC",Delhi,wind_speed,0.5,m/s,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,relativehumidity,87.0,%,2026-08-24T07:30:00Z
+"Alipur, Delhi - DPCC",Delhi,pm25,28.0,µg/m³,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,pm10,156.0,µg/m³,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,co,0.82,ppb,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,no,3.5,ppb,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,so2,5.6,ppb,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,no2,28.7,ppb,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,temperature,27.7,c,2026-08-24T07:30:00Z
+"Alipur, Delhi - DPCC",Delhi,o3,10.1,µg/m³,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,nox,0.0181,ppb,2026-09-08T14:30:00Z
+"Alipur, Delhi - DPCC",Delhi,wind_direction,185.0,deg,2026-08-24T07:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,no,23.6,ppb,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,co,1.92,ppb,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,pm10,237.0,µg/m³,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,pm25,36.0,µg/m³,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,temperature,30.7,c,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,o3,6.0,µg/m³,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,relativehumidity,80.0,%,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,no2,38.9,ppb,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,so2,2.8,ppb,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,wind_speed,0.6,m/s,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,wind_direction,170.0,deg,2026-09-08T14:30:00Z
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,nox,0.04,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,o3,19.5,µg/m³,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,pm25,27.2,µg/m³,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,wind_speed,1.56,m/s,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,nox,0.02429,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,no,6.38,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,so2,5.67,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,co,0.48,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,wind_direction,320.66,deg,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,no2,19.67,ppb,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,relativehumidity,72.51,%,2026-09-08T14:30:00Z
+"Arya Nagar, Bahadurgarh - HSPCB",Delhi NCR,pm10,114.5,µg/m³,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,co,2.36,ppb,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,so2,4.9,ppb,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,no,4.6,ppb,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,relativehumidity,70.0,%,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,pm25,29.0,µg/m³,2026-09-08T13:00:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,pm10,162.0,µg/m³,2026-09-08T14:00:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,o3,12.4,µg/m³,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,temperature,32.8,c,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,no2,42.3,ppb,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,wind_direction,316.0,deg,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,wind_speed,0.3,m/s,2026-09-08T14:30:00Z
+"Vivek Vihar, Delhi - DPCC",Delhi,nox,0.026199999999999998,ppb,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,co,1.06,ppb,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,pm10,297.0,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,relativehumidity,75.0,%,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,temperature,31.1,c,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,no,10.5,ppb,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,no2,15.8,ppb,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,pm25,70.0,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,so2,3.3,ppb,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,o3,30.1,µg/m³,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,wind_direction,180.0,deg,2026-09-08T14:15:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,wind_speed,0.1,m/s,2026-09-08T14:30:00Z
+"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Delhi NCR,nox,0.0169,ppb,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,no,10.27,ppb,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,so2,20.74,ppb,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,temperature,29.19,c,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,co,0.4,ppb,2026-09-07T07:00:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,no2,42.94,ppb,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,pm25,0.8,µg/m³,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,o3,34.41,µg/m³,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,pm10,1.2,µg/m³,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,relativehumidity,96.93,%,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,wind_speed,0.19,m/s,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,wind_direction,11.46,deg,2026-09-08T14:30:00Z
+"Amity University, Panchgaon - IITM",Delhi NCR,nox,0.031190000000000002,ppb,2026-09-08T14:30:00Z
