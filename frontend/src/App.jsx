@@ -1743,7 +1743,7 @@ export default function App() {
               <Wind className="w-5 h-5 text-white" />
             </div>
             <div className="hidden lg:block">
-              <h1 className="font-extrabold text-sm text-white tracking-wide">VayuDrishti</h1>
+              <h1 className="font-extrabold text-sm text-white tracking-wide">VayuVision</h1>
               <p className="text-[10px] text-cyan-400 font-medium">Air Intelligence</p>
             </div>
           </div>
