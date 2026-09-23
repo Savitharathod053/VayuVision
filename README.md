@@ -418,7 +418,7 @@ The backend currently exposes endpoints for the main dashboard functions.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/niharika2006bathula-star/VayuDrishti.git
+git clone https://github.com/Savitharathod053/VayuVision.git
 cd VayuVision
 ```
 
