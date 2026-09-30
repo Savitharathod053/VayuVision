@@ -938,6 +938,421 @@ function StationHealthAdvisory({ advisoryData }) {
   );
 }
 
+// =========================================================================
+// CPCB NAQI pm25ToAqi — mirrors utils/aqi.py pm25_to_aqi() exactly
+// Breakpoints: (c_low, c_high, i_low, i_high, category)
+// =========================================================================
+const CPCB_PM25_BREAKPOINTS = [
+  [0.0, 30.0, 0, 50, 'Good'],
+  [30.0, 60.0, 51, 100, 'Satisfactory'],
+  [60.0, 90.0, 101, 200, 'Moderate'],
+  [90.0, 120.0, 201, 300, 'Poor'],
+  [120.0, 250.0, 301, 400, 'Very Poor'],
+  [250.0, 380.0, 401, 500, 'Severe'],
+];
+
+function pm25ToAqi(pm25) {
+  if (pm25 === null || pm25 === undefined || pm25 < 0) return 0;
+  const v = parseFloat(pm25);
+  for (const [cLow, cHigh, iLow, iHigh] of CPCB_PM25_BREAKPOINTS) {
+    if (v <= cHigh) {
+      return Math.round(((iHigh - iLow) / (cHigh - cLow)) * (v - cLow) + iLow);
+    }
+  }
+  // Beyond 380 µg/m³ — extrapolate using severe slope
+  const [cLow, cHigh, , iHigh] = CPCB_PM25_BREAKPOINTS[CPCB_PM25_BREAKPOINTS.length - 1];
+  const extra = ((iHigh - 401) / (cHigh - cLow)) * (v - cHigh);
+  return Math.min(999, 500 + Math.round(extra));
+}
+
+// =========================================================================
+// 72-Hour AQI Forecast Line Chart (SVG)
+// =========================================================================
+function AQIForecastChart({ forecastData, stations, chartStation, onChartStationChange }) {
+  const [hoverIdx, setHoverIdx] = useState(null);
+  const svgRef = useRef(null);
+
+  const WIDTH = 900;
+  const HEIGHT = 260;
+  const PAD_L = 60;
+  const PAD_R = 24;
+  const PAD_T = 20;
+  const PAD_B = 48;
+  const INNER_W = WIDTH - PAD_L - PAD_R;
+  const INNER_H = HEIGHT - PAD_T - PAD_B;
+
+  // Compute AQI arrays from forecast
+  const points = useMemo(() => {
+    if (!forecastData?.forecast) return [];
+    return forecastData.forecast.map((h) => ({
+      hour: h.hour_offset,
+      aqi: pm25ToAqi(h.predicted_pm25),
+      aqiLow: h.expected_low !== null && h.expected_low !== undefined ? pm25ToAqi(h.expected_low) : null,
+      aqiHigh: h.expected_high !== null && h.expected_high !== undefined ? pm25ToAqi(h.expected_high) : null,
+      hasBand: h.expected_low !== null && h.expected_low !== undefined && h.expected_high !== null && h.expected_high !== undefined,
+      timestamp: h.timestamp,
+      pm25: h.predicted_pm25,
+      category: h.aqi_category,
+      uncertaintyBucket: h.uncertainty_bucket,
+    }));
+  }, [forecastData]);
+
+  const maxHour = 72;
+
+  // Y-axis domain: 0–500 (or dynamic if data exceeds)
+  const maxAQI = points.length > 0 ? Math.max(200, Math.ceil(Math.max(...points.map(p => p.aqiHigh ?? p.aqi), 0) / 50) * 50) : 300;
+  const minAQI = 0;
+
+  const getX = (hour) => PAD_L + (hour / maxHour) * INNER_W;
+  const getY = (aqi) => PAD_T + INNER_H - ((aqi - minAQI) / (maxAQI - minAQI)) * INNER_H;
+
+  // Build SVG path for main line
+  const linePath = points.length > 0
+    ? points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${getX(p.hour).toFixed(1)} ${getY(p.aqi).toFixed(1)}`).join(' ')
+    : '';
+
+  // Build confidence band as a filled polygon (upper → lower reversed)
+  // Split into contiguous band segments (skip null points)
+  const bandSegments = useMemo(() => {
+    if (points.length === 0) return [];
+    const segs = [];
+    let current = null;
+    for (const p of points) {
+      if (p.hasBand) {
+        if (!current) current = [];
+        current.push(p);
+      } else {
+        if (current && current.length > 0) { segs.push(current); current = null; }
+      }
+    }
+    if (current && current.length > 0) segs.push(current);
+    return segs;
+  }, [points]);
+
+  // AQI color zone bands on Y-axis
+  const aqiZones = [
+    { min: 0, max: 50, color: '#064e3b', label: 'Good' },
+    { min: 50, max: 100, color: '#451a03', label: 'Satisfactory' },
+    { min: 100, max: 200, color: '#431407', label: 'Moderate' },
+    { min: 200, max: 300, color: '#3b0764', label: 'Poor' },
+    { min: 300, max: 400, color: '#3b0764', label: 'Very Poor' },
+    { min: 400, max: 500, color: '#4c0519', label: 'Severe' },
+  ].filter(z => z.max <= maxAQI || z.min < maxAQI);
+
+  const isLoading = !forecastData;
+  const hoveredPoint = hoverIdx !== null ? points[hoverIdx] : null;
+
+  // Colour the main line by AQI level at each segment
+  function aqiLineColor(aqi) {
+    if (aqi <= 50) return '#10b981';
+    if (aqi <= 100) return '#f59e0b';
+    if (aqi <= 200) return '#f97316';
+    if (aqi <= 300) return '#ef4444';
+    if (aqi <= 400) return '#a855f7';
+    return '#be123c';
+  }
+
+  // Determine dominant color for the chart line from peak AQI
+  const peakAQI = points.length > 0 ? Math.max(...points.map(p => p.aqi)) : 0;
+  const lineColor = aqiLineColor(peakAQI);
+
+  // X-axis ticks every 12 hours
+  const xTicks = [0, 12, 24, 36, 48, 60, 72];
+  // Y-axis ticks
+  const yTicks = [0, 100, 200, 300, 400, 500].filter(v => v <= maxAQI);
+
+  // Handle mouse move for hover
+  const handleSvgMouseMove = (e) => {
+    if (!svgRef.current) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    const scaleX = WIDTH / rect.width;
+    const svgX = (e.clientX - rect.left) * scaleX;
+    if (svgX < PAD_L || svgX > WIDTH - PAD_R) { setHoverIdx(null); return; }
+    const hour = ((svgX - PAD_L) / INNER_W) * maxHour;
+    const closestIdx = points.reduce((best, p, i) => {
+      return Math.abs(p.hour - hour) < Math.abs(points[best].hour - hour) ? i : best;
+    }, 0);
+    setHoverIdx(closestIdx);
+  };
+
+  // Reduced-confidence markers (null band points)
+  const lowConfPoints = points.filter(p => !p.hasBand);
+
+  return (
+    <div className="bg-[#0F172A] border border-slate-800 rounded-2xl p-5 shadow-xl">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-violet-400" />
+            <h3 className="font-bold text-sm text-white font-heading flex items-center gap-2">
+              72-Hour AQI Forecast
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-violet-950/70 text-violet-300 border border-violet-500/30 font-medium">
+                XGBoost Model · CPCB NAQI
+              </span>
+            </h3>
+          </div>
+          <p className="text-[11px] text-slate-400 mt-0.5">
+            Predicted Air Quality Index trajectory with real historical model error confidence band
+          </p>
+        </div>
+
+        {/* Station Selector Dropdown */}
+        <div className="flex items-center gap-2 shrink-0">
+          <label className="text-xs text-slate-400 font-medium whitespace-nowrap">Station:</label>
+          <select
+            id="aqi-forecast-station-select"
+            value={chartStation?.name || ''}
+            onChange={(e) => {
+              const st = stations.find(s => s.name === e.target.value);
+              if (st) onChartStationChange(st);
+            }}
+            className="bg-slate-950 border border-slate-700 text-xs text-slate-200 px-3 py-1.5 rounded-xl focus:outline-none focus:border-violet-500 font-medium max-w-[220px] truncate"
+          >
+            {stations.map(st => (
+              <option key={st.name} value={st.name}>{st.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="flex items-center gap-5 mb-3 text-[11px]">
+        <div className="flex items-center gap-1.5">
+          <span className="w-5 border-t-2 border-violet-400" style={{ display: 'inline-block' }} />
+          <span className="text-slate-300">Predicted AQI</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-5 h-3 rounded-sm opacity-50" style={{ display: 'inline-block', background: 'rgba(139,92,246,0.4)' }} />
+          <span className="text-slate-300">Confidence Range (real historical error)</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-slate-300">◆</span>
+          <span className="text-slate-400">Reduced confidence (insufficient historical samples at this hour offset)</span>
+        </div>
+      </div>
+
+      {/* Chart Body */}
+      {isLoading ? (
+        <div className="h-64 flex items-center justify-center text-slate-500 text-xs bg-slate-900/40 rounded-2xl border border-slate-800">
+          <RefreshCw className="w-4 h-4 animate-spin mr-2 text-violet-400" />
+          Loading 72-hour AQI forecast for {chartStation?.name || 'selected station'}...
+        </div>
+      ) : points.length === 0 ? (
+        <div className="h-64 flex items-center justify-center text-slate-500 text-xs bg-slate-900/40 rounded-2xl border border-slate-800">
+          <AlertCircle className="w-4 h-4 mr-2 text-amber-400" />
+          No forecast data available for this station.
+        </div>
+      ) : (
+        <div
+          className="relative w-full overflow-hidden select-none rounded-xl bg-slate-950/50 border border-slate-800/60"
+          onMouseLeave={() => setHoverIdx(null)}
+        >
+          <svg
+            ref={svgRef}
+            viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+            className="w-full h-auto cursor-crosshair"
+            onMouseMove={handleSvgMouseMove}
+          >
+            <defs>
+              <linearGradient id="forecastBandGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.45" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.15" />
+              </linearGradient>
+              <clipPath id="forecastClip">
+                <rect x={PAD_L} y={0} width={INNER_W} height={HEIGHT} />
+              </clipPath>
+            </defs>
+
+            {/* Subtle AQI zone background stripes */}
+            {aqiZones.map((zone, i) => {
+              const yTop = getY(Math.min(zone.max, maxAQI));
+              const yBot = getY(Math.max(zone.min, minAQI));
+              return (
+                <rect
+                  key={i}
+                  x={PAD_L}
+                  y={yTop}
+                  width={INNER_W}
+                  height={yBot - yTop}
+                  fill={zone.color}
+                  opacity={0.18}
+                  clipPath="url(#forecastClip)"
+                />
+              );
+            })}
+
+            {/* Y-axis gridlines */}
+            {yTicks.map(v => (
+              <g key={`yg-${v}`}>
+                <line
+                  x1={PAD_L} y1={getY(v)} x2={WIDTH - PAD_R} y2={getY(v)}
+                  stroke="#1e293b" strokeWidth="0.7" strokeDasharray="3 3"
+                />
+                <text
+                  x={PAD_L - 8} y={getY(v) + 4}
+                  fill={v === 0 ? '#475569' : '#64748b'}
+                  fontSize="10" textAnchor="end" fontFamily="monospace" fontWeight="600"
+                >
+                  {v}
+                </text>
+              </g>
+            ))}
+
+            {/* X-axis gridlines at every 12h */}
+            {xTicks.map(h => (
+              <g key={`xg-${h}`}>
+                <line
+                  x1={getX(h)} y1={PAD_T} x2={getX(h)} y2={PAD_T + INNER_H}
+                  stroke="#1e293b" strokeWidth="0.7" strokeDasharray="3 3"
+                />
+                <text
+                  x={getX(h)} y={PAD_T + INNER_H + 16}
+                  fill="#64748b" fontSize="10" textAnchor="middle" fontFamily="monospace"
+                >
+                  +{h}h
+                </text>
+              </g>
+            ))}
+
+            {/* Axis lines */}
+            <line x1={PAD_L} y1={PAD_T} x2={PAD_L} y2={PAD_T + INNER_H} stroke="#334155" strokeWidth="1" />
+            <line x1={PAD_L} y1={PAD_T + INNER_H} x2={WIDTH - PAD_R} y2={PAD_T + INNER_H} stroke="#334155" strokeWidth="1" />
+
+            {/* Axis Labels */}
+            <text
+              x={PAD_L + INNER_W / 2}
+              y={HEIGHT - 6}
+              fill="#94a3b8" fontSize="11" textAnchor="middle" fontWeight="600" fontFamily="sans-serif"
+            >
+              Hours Ahead (0–72)
+            </text>
+            <text
+              x={16}
+              y={PAD_T + INNER_H / 2}
+              fill="#94a3b8" fontSize="11" textAnchor="middle"
+              transform={`rotate(-90 16,${PAD_T + INNER_H / 2})`}
+              fontWeight="600" fontFamily="sans-serif"
+            >
+              Air Quality Index (AQI)
+            </text>
+
+            <g clipPath="url(#forecastClip)">
+              {/* Confidence band segments (only where expected_low/high are non-null) */}
+              {bandSegments.map((seg, si) => {
+                // Upper boundary path (left to right at aqiHigh)
+                const upperPath = seg.map((p, i) =>
+                  `${i === 0 ? 'M' : 'L'} ${getX(p.hour).toFixed(1)} ${getY(p.aqiHigh).toFixed(1)}`
+                ).join(' ');
+                // Lower boundary (right to left at aqiLow) to close the polygon
+                const lowerPath = [...seg].reverse().map((p) =>
+                  `L ${getX(p.hour).toFixed(1)} ${getY(p.aqiLow).toFixed(1)}`
+                ).join(' ');
+                return (
+                  <path
+                    key={`band-${si}`}
+                    d={`${upperPath} ${lowerPath} Z`}
+                    fill="url(#forecastBandGrad)"
+                    stroke="none"
+                  />
+                );
+              })}
+
+              {/* Main forecast line — single continuous solid line */}
+              <path
+                d={linePath}
+                fill="none"
+                stroke="#8b5cf6"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Reduced-confidence markers (diamond shape) for null-band hours */}
+              {lowConfPoints.map((p, i) => (
+                <polygon
+                  key={`lc-${i}`}
+                  points={`${getX(p.hour)},${getY(p.aqi) - 5} ${getX(p.hour) + 4},${getY(p.aqi)} ${getX(p.hour)},${getY(p.aqi) + 5} ${getX(p.hour) - 4},${getY(p.aqi)}`}
+                  fill="#fbbf24"
+                  stroke="#0F172A"
+                  strokeWidth="1"
+                  opacity={0.85}
+                  title={`Hour +${p.hour}: insufficient historical samples for confidence band`}
+                />
+              ))}
+
+              {/* Hover crosshair */}
+              {hoverIdx !== null && points[hoverIdx] && (
+                <g>
+                  <line
+                    x1={getX(points[hoverIdx].hour)}
+                    y1={PAD_T}
+                    x2={getX(points[hoverIdx].hour)}
+                    y2={PAD_T + INNER_H}
+                    stroke="#475569" strokeWidth="1" strokeDasharray="2 2"
+                  />
+                  <circle
+                    cx={getX(points[hoverIdx].hour)}
+                    cy={getY(points[hoverIdx].aqi)}
+                    r={4}
+                    fill="#8b5cf6"
+                    stroke="#0F172A"
+                    strokeWidth="1.5"
+                  />
+                </g>
+              )}
+            </g>
+          </svg>
+
+          {/* Hover tooltip */}
+          {hoveredPoint && (
+            <div className="absolute top-2 left-[50%] -translate-x-[50%] bg-slate-800/95 border border-slate-700 px-3 py-2 rounded-xl text-[10px] shadow-lg backdrop-blur-md pointer-events-none flex gap-4 z-20">
+              <div>
+                <span className="text-slate-400 block mb-0.5">Hour</span>
+                <span className="text-white font-bold">+{hoveredPoint.hour}h ahead</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block mb-0.5">Predicted AQI</span>
+                <span className="text-violet-300 font-bold text-sm">{hoveredPoint.aqi}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block mb-0.5">Category</span>
+                <span className="text-white font-medium">{hoveredPoint.category}</span>
+              </div>
+              {hoveredPoint.hasBand && (
+                <div>
+                  <span className="text-slate-400 block mb-0.5">Confidence Band</span>
+                  <span className="text-slate-300 font-mono">{hoveredPoint.aqiLow}–{hoveredPoint.aqiHigh}</span>
+                </div>
+              )}
+              {!hoveredPoint.hasBand && (
+                <div>
+                  <span className="text-amber-400 font-semibold">◆ Low confidence</span>
+                  <span className="text-slate-400 block">Insufficient history</span>
+                </div>
+              )}
+              <div>
+                <span className="text-slate-400 block mb-0.5">PM2.5</span>
+                <span className="text-cyan-300 font-mono">{Number(hoveredPoint.pm25).toFixed(1)} µg/m³</span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Footer note */}
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500">
+        <span>
+          ◆ = reduced-confidence hour (no historical error samples). Band = real historical model error (not fabricated).
+        </span>
+        <span className="text-slate-500 font-mono">
+          Station: <span className="text-slate-300 font-semibold">{chartStation?.name || '—'}</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [stations, setStations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1070,6 +1485,11 @@ export default function App() {
   const [historyData, setHistoryData] = useState([]);
   const [historyDays, setHistoryDays] = useState(7);
   const [loadingModal, setLoadingModal] = useState(false);
+
+  // 72-Hour AQI Forecast Chart State (Dashboard bottom)
+  const [chartStation, setChartStation] = useState(null); // independent station selector for chart
+  const [chartForecastData, setChartForecastData] = useState(null);
+  const [loadingChartForecast, setLoadingChartForecast] = useState(false);
   const [activeTab, setActiveTab] = useState('current'); // 'current' | 'forecast' | 'explain' | 'correlation' | 'health' | 'sources'
 
   // Filter stations matching map search query
@@ -1315,6 +1735,34 @@ export default function App() {
     fetchHistory();
     fetchDispersion();
   }, [selectedStation?.name, historyDays]);
+
+  // Sync chartStation to selectedStation when selectedStation first set (or changes) — but allow independent selection
+  useEffect(() => {
+    if (selectedStation && !chartStation) {
+      setChartStation(selectedStation);
+    }
+  }, [selectedStation]);
+
+  // Fetch 72-hour forecast for chartStation (for the bottom dashboard AQI chart)
+  useEffect(() => {
+    if (!chartStation) return;
+    const fetchChartForecast = async () => {
+      setLoadingChartForecast(true);
+      setChartForecastData(null);
+      try {
+        const res = await fetch(`${API_BASE}/forecast/${encodeURIComponent(chartStation.name)}`);
+        if (res.ok) {
+          const json = await res.json();
+          setChartForecastData(json);
+        }
+      } catch (e) {
+        console.error('Failed to load AQI forecast chart data:', e);
+      } finally {
+        setLoadingChartForecast(false);
+      }
+    };
+    fetchChartForecast();
+  }, [chartStation?.name]);
 
   // Initialize Leaflet Map (when on dashboard tab)
   useEffect(() => {
@@ -2450,6 +2898,20 @@ export default function App() {
                     </div>
                   )}
                 </div>
+              </section>
+
+              {/* ================================================================ */}
+              {/* SECTION 5: 72-HOUR AQI FORECAST CHART                           */}
+              {/* ================================================================ */}
+              <section>
+                <AQIForecastChart
+                  forecastData={loadingChartForecast ? null : chartForecastData}
+                  stations={stations}
+                  chartStation={chartStation || selectedStation}
+                  onChartStationChange={(st) => {
+                    setChartStation(st);
+                  }}
+                />
               </section>
             </>
           )}
