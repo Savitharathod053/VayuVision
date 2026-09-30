@@ -1,12 +1,11 @@
+.git
 .env
-__pycache__/
+node_modules
+.venv
+venv
+__pycache__
 *.pyc
-node_modules/
-.venv/
-venv/
 *.log
-
-# Heavy satellite granules and raw downloads (>100MB / temporary)
 data/raw/*.nc
 data/raw/*.xls
 data/raw/temp_granules/
@@ -17,8 +16,3 @@ data/raw/openaq_historical_pm25.csv
 data/raw/openmeteo_extended_historical_delhi.*
 data/processed/master_dataset_extended.csv
 data/processed/ml_dataset.csv
-
-# Keep only the production model, ignore backups/experiments
-models/*.pkl
-!models/pm25_xgboost_model.pkl
-!models/.gitkeep

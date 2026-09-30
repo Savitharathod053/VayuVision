@@ -46,7 +46,7 @@ import {
   BookOpen
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE ?? '';
 const DELHI_CENTER = [28.6139, 77.2090];
 
 // Calculate forward azimuth/bearing in degrees from point 1 to point 2
@@ -1402,7 +1402,7 @@ export default function App() {
     setIsSimulating(true);
     setSimError(null);
     try {
-      const res = await fetch("http://localhost:8000/simulate", {
+      const res = await fetch(`${API_BASE}/simulate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -2191,7 +2191,7 @@ export default function App() {
               <Wind className="w-5 h-5 text-white" />
             </div>
             <div className="hidden lg:block">
-              <h1 className="font-extrabold text-sm text-white tracking-wide">VayuDrishti</h1>
+              <h1 className="font-extrabold text-sm text-white tracking-wide">VayuVision</h1>
               <p className="text-[10px] text-cyan-400 font-medium">Air Intelligence</p>
             </div>
           </div>

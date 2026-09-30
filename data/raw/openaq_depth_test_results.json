@@ -1,0 +1,522 @@
+[
+  {
+    "station_name": "Alipur, Delhi - DPCC",
+    "location_id": 6932,
+    "sensors": [
+      {
+        "sensor_id": 19935,
+        "meta_datetime_first": {
+          "utc": "2018-12-15T15:00:00Z",
+          "local": "2018-12-15T20:30:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2022-10-31T00:30:00Z",
+          "local": "2022-10-31T06:00:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Last 90 Days": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2018-12-15T14:45:00Z",
+            "latest": "2019-06-24T08:00:00Z"
+          }
+        }
+      },
+      {
+        "sensor_id": 12235698,
+        "meta_datetime_first": {
+          "utc": "2025-02-18T20:15:00Z",
+          "local": "2025-02-19T01:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2026-09-02T05:30:00Z",
+          "local": "2026-09-02T11:00:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-01T17:00:00Z"
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 932,
+            "meta_found": 932,
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-02-28T23:30:00Z"
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-11-01T00:00:00Z",
+            "latest": "2025-11-13T11:15:00Z"
+          },
+          "Last 90 Days": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2026-06-10T08:30:00Z",
+            "latest": "2026-06-23T01:00:00Z"
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-01T17:00:00Z"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "station_name": "Anand Vihar, New Delhi - DPCC",
+    "location_id": 235,
+    "sensors": [
+      {
+        "sensor_id": 384,
+        "meta_datetime_first": {
+          "utc": "2016-02-05T14:15:00Z",
+          "local": "2016-02-05T19:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2018-02-21T21:15:00Z",
+          "local": "2018-02-22T02:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Last 90 Days": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 786,
+            "meta_found": 786,
+            "earliest": "2018-01-01T06:00:00Z",
+            "latest": "2018-02-21T21:00:00Z"
+          }
+        }
+      },
+      {
+        "sensor_id": 12235610,
+        "meta_datetime_first": {
+          "utc": "2025-02-18T22:15:00Z",
+          "local": "2025-02-19T03:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2026-09-03T18:15:00Z",
+          "local": "2026-09-03T23:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T22:00:00Z",
+            "latest": "2025-03-06T12:45:00Z"
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 526,
+            "meta_found": 526,
+            "earliest": "2025-02-18T22:00:00Z",
+            "latest": "2025-02-28T23:30:00Z"
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-11-01T00:00:00Z",
+            "latest": "2025-11-14T05:00:00Z"
+          },
+          "Last 90 Days": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2026-06-10T10:30:00Z",
+            "latest": "2026-06-27T05:45:00Z"
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T22:00:00Z",
+            "latest": "2025-03-06T12:45:00Z"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "station_name": "R K Puram, Delhi - DPCC",
+    "location_id": 17,
+    "sensors": [
+      {
+        "sensor_id": 12234787,
+        "meta_datetime_first": {
+          "utc": "2025-02-18T20:15:00Z",
+          "local": "2025-02-19T01:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2026-09-03T18:15:00Z",
+          "local": "2026-09-03T23:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-03T11:45:00Z"
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 918,
+            "meta_found": 918,
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-02-28T23:30:00Z"
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-11-01T00:00:00Z",
+            "latest": "2025-11-13T14:30:00Z"
+          },
+          "Last 90 Days": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2026-06-10T00:00:00Z",
+            "latest": "2026-06-22T19:15:00Z"
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-03T11:45:00Z"
+          }
+        }
+      },
+      {
+        "sensor_id": 35,
+        "meta_datetime_first": {
+          "utc": "2016-02-05T14:55:00Z",
+          "local": "2016-02-05T20:25:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2018-02-21T21:15:00Z",
+          "local": "2018-02-22T02:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Last 90 Days": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 840,
+            "meta_found": 840,
+            "earliest": "2018-01-01T06:30:00Z",
+            "latest": "2018-02-21T21:00:00Z"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "station_name": "Punjabi Bagh, Delhi - DPCC",
+    "location_id": 50,
+    "sensors": [
+      {
+        "sensor_id": 396,
+        "meta_datetime_first": {
+          "utc": "2016-02-05T14:55:00Z",
+          "local": "2016-02-05T20:25:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2018-02-21T21:15:00Z",
+          "local": "2018-02-22T02:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Last 90 Days": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 684,
+            "meta_found": 684,
+            "earliest": "2018-01-01T10:00:00Z",
+            "latest": "2018-02-21T21:00:00Z"
+          }
+        }
+      },
+      {
+        "sensor_id": 12234796,
+        "meta_datetime_first": {
+          "utc": "2025-02-18T20:15:00Z",
+          "local": "2025-02-19T01:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2026-09-03T18:15:00Z",
+          "local": "2026-09-03T23:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-01T16:45:00Z"
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 934,
+            "meta_found": 934,
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-02-28T23:30:00Z"
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-11-01T00:00:00Z",
+            "latest": "2025-11-14T01:00:00Z"
+          },
+          "Last 90 Days": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2026-06-10T00:00:00Z",
+            "latest": "2026-06-23T00:00:00Z"
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-01T16:45:00Z"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "station_name": "Bawana, Delhi - DPCC",
+    "location_id": 8472,
+    "sensors": [
+      {
+        "sensor_id": 36391,
+        "meta_datetime_first": {
+          "utc": "2018-08-10T06:15:00Z",
+          "local": "2018-08-10T11:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2022-10-31T00:45:00Z",
+          "local": "2022-10-31T06:15:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Last 90 Days": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2018-08-10T06:00:00Z",
+            "latest": "2018-09-02T11:30:00Z"
+          }
+        }
+      },
+      {
+        "sensor_id": 12235294,
+        "meta_datetime_first": {
+          "utc": "2025-02-18T20:15:00Z",
+          "local": "2025-02-19T01:45:00+05:30"
+        },
+        "meta_datetime_last": {
+          "utc": "2026-09-03T18:15:00Z",
+          "local": "2026-09-03T23:45:00+05:30"
+        },
+        "windows_tested": {
+          "Full 3-Year Window (3 years ago -> Now)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-02T00:15:00Z"
+          },
+          "Winter 2023-2024 (Nov 2023 - Feb 2024)": {
+            "count_page1": 0,
+            "meta_found": 0,
+            "earliest": null,
+            "latest": null
+          },
+          "Winter 2024-2025 (Nov 2024 - Feb 2025)": {
+            "count_page1": 907,
+            "meta_found": 907,
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-02-28T23:30:00Z"
+          },
+          "Winter 2025-2026 (Nov 2025 - Feb 2026)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-11-01T00:00:00Z",
+            "latest": "2025-11-13T05:00:00Z"
+          },
+          "Last 90 Days": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2026-06-10T00:00:00Z",
+            "latest": "2026-06-22T01:30:00Z"
+          },
+          "Wide Open (No datetime_from, or 2018-01-01)": {
+            "count_page1": 1000,
+            "meta_found": ">1000",
+            "earliest": "2025-02-18T20:00:00Z",
+            "latest": "2025-03-02T00:15:00Z"
+          }
+        }
+      }
+    ]
+  }
+]
